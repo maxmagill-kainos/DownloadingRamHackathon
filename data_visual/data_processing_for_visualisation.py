@@ -19,7 +19,9 @@ class DataSetPrep():
     def drop(self, df):
         newdf = df.dropna()
         newdf1 = newdf.drop(newdf.index[1:len(newdf.index)])
+        newdf1 = newdf1.drop(columns=["Geography code"])
         newdf1 = newdf1.reset_index(drop=True)
+        print(list(newdf1.columns.values))
         return newdf1
     
     def export(self, df):
@@ -28,6 +30,17 @@ class DataSetPrep():
 pop_file = "DownloadingRamHackathon\data_visual\census-2021-ms-a02.xlsx"
 pop_sheet_name = "MS-A02"
 
+sex_file = "DownloadingRamHackathon\data_visual\census-2021-ms-a08.xlsx"
+sex_sheet_name = "MS-A08"
+
+ethnic_file = "DownloadingRamHackathon\data_visual\census-2021-ms-b01.xlsx"
+ethnic_sheet_name = "MS-B01"
 
 test = DataSetPrep(pop_file, pop_sheet_name)
 test.run()
+
+test2 = DataSetPrep(sex_file, sex_sheet_name)
+test2.run()
+
+test3 = DataSetPrep(ethnic_file, ethnic_sheet_name)
+test3.run()
